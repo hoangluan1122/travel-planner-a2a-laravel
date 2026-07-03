@@ -53,11 +53,17 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__dispatch_probe') {
         ]);
         $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
         $response = $kernel->handle($request);
+        $body = (string) $response->getContent();
+        if ($response->getStatusCode() >= 500 && preg_match('/<title>(.*?)<\/title>/s', $body, $match)) {
+            $body = trim(html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5));
+        } else {
+            $body = substr($body, 0, 1000);
+        }
         echo json_encode([
             'ok' => $response->getStatusCode() < 500,
             'status' => $response->getStatusCode(),
             'headers' => $response->headers->all(),
-            'body' => substr((string) $response->getContent(), 0, 1000),
+            'body' => $body,
         ]);
         $kernel->terminate($request, $response);
     } catch (Throwable $exception) {
