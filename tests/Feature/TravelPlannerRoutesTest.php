@@ -37,6 +37,17 @@ final class TravelPlannerRoutesTest extends TestCase
             ]);
     }
 
+    public function test_api_plan_uses_explicit_budget_input(): void
+    {
+        $this->postJson('/api/plan', [
+            'user_text' => 'Toi muon di Da Nang 3 ngay cho 2 nguoi thich bien',
+            'origin' => 'SGN',
+            'budget_millions' => 12,
+        ])
+            ->assertOk()
+            ->assertJsonPath('parsed_request.budget', 12000000);
+    }
+
     public function test_providers_status_returns_debug_payload(): void
     {
         $this->getJson('/api/providers-status?destination=Da%20Nang')
@@ -48,12 +59,19 @@ final class TravelPlannerRoutesTest extends TestCase
                 'serpapi_key_present',
                 'origin_iata_present',
                 'geoapify_key_present',
+                'weather_status',
+                'weather_summary',
+                'weather_forecast_count',
+                'weather_forecast_preview',
                 'hotels_count',
                 'attractions_count',
                 'flights_count',
+                'live_flights_count',
+                'fallback_flights_count',
                 'hotels_preview',
                 'attractions_preview',
                 'flights_preview',
+                'fallback_flights_preview',
                 'flight_debug',
             ]);
     }

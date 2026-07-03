@@ -1,0 +1,2008 @@
+{
+    "summary": {
+        "total_cases": 7,
+        "transport_ok": 7,
+        "hotel_ok": 7,
+        "attraction_ok": 7,
+        "full_case_ok": 7
+    },
+    "cases": [
+        {
+            "destination": "Da Lat",
+            "days": 4,
+            "budget": 8000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 1",
+                        "Transport options kept after validation: 1",
+                        "Added local fallback transport choices because live providers returned too few practical options."
+                    ],
+                    "count": 3
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "Local fallback dataset",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider unavailable or empty. Local fallback active."
+                    ],
+                    "count": 2
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: medium."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 4,
+                        "budget": 8000000,
+                        "per_person_day_budget": 2000000,
+                        "budget_tier": "comfortable",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": 2994400,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] Bamboo Airways 06:30 -> 07:25",
+                        "hotel": "Pine Hill Retreat",
+                        "attractions": [
+                            "Bảo tàng Lâm Đồng",
+                            "Dinh II",
+                            "Ga Đà Lạt"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] Bamboo Airways 06:30 -> 07:25",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Pine Hill Retreat",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Bảo tàng Lâm Đồng",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Cần cân chỉnh ngân sách",
+                            "confidence": "medium",
+                            "reason": "Tổng chi phí ước tính vượt ngân sách khoảng 2,994,400 VND."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 12,
+                    "breakdown": {
+                        "transport": 2900000,
+                        "lodging": 2700000,
+                        "attractions": 0,
+                        "meals": 2200000,
+                        "local_transport": 880000,
+                        "experience": 1000000,
+                        "shopping": 500000,
+                        "daily_allowance": 3080000,
+                        "experience_adjustment": 1000000,
+                        "contingency": 814400,
+                        "total": 10994400,
+                        "target_budget": 8000000,
+                        "budget_gap": 2994400,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 4,
+                    "score": 9,
+                    "issues": [
+                        "over_budget"
+                    ],
+                    "budget_breakdown": {
+                        "transport": 2900000,
+                        "lodging": 2700000,
+                        "attractions": 0,
+                        "meals": 2200000,
+                        "local_transport": 880000,
+                        "experience": 1000000,
+                        "shopping": 500000,
+                        "daily_allowance": 3080000,
+                        "experience_adjustment": 1000000,
+                        "contingency": 814400,
+                        "total": 10994400,
+                        "target_budget": 8000000,
+                        "budget_gap": 2994400,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Da Lat",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 4,
+                        "budget": 8000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Da Lat",
+                        "canonical_name": "Da Lat",
+                        "normalized_slug": "da lat",
+                        "iata": "DLI",
+                        "train_station_code": null,
+                        "bus_area_id": "46",
+                        "lat": 11.9404,
+                        "lon": 108.4583,
+                        "kind": "city",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "Da Lat",
+                        "nearest_train_hub": "Nha Trang",
+                        "nearest_bus_hub": "Da Lat"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 30547,
+                        "fallback": false
+                    },
+                    "transport_count": 3,
+                    "transport_titles": [
+                        "[Đề xuất chính] Bamboo Airways 06:30 -> 07:25",
+                        "Vietnam Airlines 11:00 -> 11:55",
+                        "Ô tô Ha Noi -> Da Lat"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 1",
+                        "Transport options kept after validation: 1",
+                        "Added local fallback transport choices because live providers returned too few practical options."
+                    ],
+                    "hotel_count": 2,
+                    "hotel_titles": [
+                        "Pine Hill Retreat",
+                        "Coffee Lane Hotel"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Bảo tàng Lâm Đồng",
+                        "Dinh II",
+                        "Ga Đà Lạt",
+                        "Thiên Vương Cổ Sát",
+                        "Thiền viện Trúc Lâm Đà Lạt"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Pine Hill Retreat",
+                            "area": "Tuyen Lam",
+                            "lat": null,
+                            "lon": null,
+                            "source": "Local fallback dataset",
+                            "confidence": "medium"
+                        }
+                    }
+                }
+            },
+            "transport_count": 3,
+            "hotel_count": 2,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] Bamboo Airways 06:30 -> 07:25",
+                "Vietnam Airlines 11:00 -> 11:55",
+                "Ô tô Ha Noi -> Da Lat"
+            ],
+            "hotel_titles": [
+                "Pine Hill Retreat",
+                "Coffee Lane Hotel"
+            ],
+            "attraction_titles": [
+                "Bảo tàng Lâm Đồng",
+                "Dinh II",
+                "Ga Đà Lạt",
+                "Thiên Vương Cổ Sát",
+                "Thiền viện Trúc Lâm Đà Lạt"
+            ],
+            "estimated_cost": 10994400
+        },
+        {
+            "destination": "Da Nang",
+            "days": 3,
+            "budget": 7000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 3",
+                        "Transport options kept after validation: 3"
+                    ],
+                    "count": 3
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "OpenStreetMap",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider active: OpenStreetMap."
+                    ],
+                    "count": 4
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: high."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 3,
+                        "budget": 7000000,
+                        "per_person_day_budget": 2333333,
+                        "budget_tier": "comfortable",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": -75688,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] Tau hoa Ha Noi -> Da Nang",
+                        "hotel": "Jimy",
+                        "attractions": [
+                            "Chợ Cồn",
+                            "Công viên 29 tháng 3",
+                            "Ga Thanh Khê"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] Tau hoa Ha Noi -> Da Nang",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Jimy",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Chợ Cồn",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Ngân sách phù hợp",
+                            "confidence": "high",
+                            "reason": "Tổng chi phí ước tính nằm trong ngân sách khách đã nhập."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 11,
+                    "breakdown": {
+                        "transport": 1151400,
+                        "lodging": 1700000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 512912,
+                        "total": 6924312,
+                        "target_budget": 7000000,
+                        "budget_gap": -75688,
+                        "budget_fit": true,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 3,
+                    "score": 10,
+                    "issues": [],
+                    "budget_breakdown": {
+                        "transport": 1151400,
+                        "lodging": 1700000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 512912,
+                        "total": 6924312,
+                        "target_budget": 7000000,
+                        "budget_gap": -75688,
+                        "budget_fit": true,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Da Nang",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 3,
+                        "budget": 7000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Da Nang",
+                        "canonical_name": "Da Nang",
+                        "normalized_slug": "da nang",
+                        "iata": "DAD",
+                        "train_station_code": "DNA",
+                        "bus_area_id": "15",
+                        "lat": 16.0544,
+                        "lon": 108.2022,
+                        "kind": "city",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "Da Nang",
+                        "nearest_train_hub": "Da Nang",
+                        "nearest_bus_hub": "Da Nang"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 2704,
+                        "fallback": false
+                    },
+                    "transport_count": 3,
+                    "transport_titles": [
+                        "[Đề xuất chính] Tau hoa Ha Noi -> Da Nang",
+                        "Xe khách / limousine Ha Noi -> Da Nang",
+                        "Ô tô Ha Noi -> Da Nang"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 3",
+                        "Transport options kept after validation: 3"
+                    ],
+                    "hotel_count": 4,
+                    "hotel_titles": [
+                        "Jimy",
+                        "Sanouva Danang Hotel",
+                        "Son Tra Resort & Spa",
+                        "Tan Vinh"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Chợ Cồn",
+                        "Công viên 29 tháng 3",
+                        "Ga Thanh Khê",
+                        "Ga Đà Nẵng",
+                        "Nút giao thông Ngã ba Huế"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Son Tra Resort & Spa",
+                            "area": "Da Nang",
+                            "lat": 16.1060167,
+                            "lon": 108.294902,
+                            "source": "OpenStreetMap",
+                            "confidence": "high"
+                        }
+                    }
+                }
+            },
+            "transport_count": 3,
+            "hotel_count": 4,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] Tau hoa Ha Noi -> Da Nang",
+                "Xe khách / limousine Ha Noi -> Da Nang",
+                "Ô tô Ha Noi -> Da Nang"
+            ],
+            "hotel_titles": [
+                "Jimy",
+                "Sanouva Danang Hotel",
+                "Son Tra Resort & Spa",
+                "Tan Vinh"
+            ],
+            "attraction_titles": [
+                "Chợ Cồn",
+                "Công viên 29 tháng 3",
+                "Ga Thanh Khê",
+                "Ga Đà Nẵng",
+                "Nút giao thông Ngã ba Huế"
+            ],
+            "estimated_cost": 6924312
+        },
+        {
+            "destination": "Nha Trang",
+            "days": 3,
+            "budget": 8000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 2",
+                        "Transport options kept after validation: 2"
+                    ],
+                    "count": 2
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "Local fallback dataset",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider unavailable or empty. Local fallback active."
+                    ],
+                    "count": 4
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: medium."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 3,
+                        "budget": 8000000,
+                        "per_person_day_budget": 2666666,
+                        "budget_tier": "comfortable",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": 246880,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] Tau hoa Ha Noi -> Nha Trang",
+                        "hotel": "Daimond Bay Resort",
+                        "attractions": [
+                            "Hòn Đỏ (Nha Trang)",
+                            "Lăng Bà Vú",
+                            "Nhà thờ Núi Nha Trang"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] Tau hoa Ha Noi -> Nha Trang",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Daimond Bay Resort",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Hòn Đỏ (Nha Trang)",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Cần cân chỉnh ngân sách",
+                            "confidence": "medium",
+                            "reason": "Tổng chi phí ước tính vượt ngân sách khoảng 246,880 VND."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 12,
+                    "breakdown": {
+                        "transport": 1976000,
+                        "lodging": 2100000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 610880,
+                        "total": 8246880,
+                        "target_budget": 8000000,
+                        "budget_gap": 246880,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 3,
+                    "score": 9,
+                    "issues": [
+                        "over_budget"
+                    ],
+                    "budget_breakdown": {
+                        "transport": 1976000,
+                        "lodging": 2100000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 610880,
+                        "total": 8246880,
+                        "target_budget": 8000000,
+                        "budget_gap": 246880,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Nha Trang",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 3,
+                        "budget": 8000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Nha Trang",
+                        "canonical_name": "Nha Trang",
+                        "normalized_slug": "nha trang",
+                        "iata": "CXR",
+                        "train_station_code": "NTR",
+                        "bus_area_id": null,
+                        "lat": 12.2388,
+                        "lon": 109.1967,
+                        "kind": "city",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "Nha Trang",
+                        "nearest_train_hub": "Nha Trang",
+                        "nearest_bus_hub": "Da Lat"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 29640,
+                        "fallback": false
+                    },
+                    "transport_count": 2,
+                    "transport_titles": [
+                        "[Đề xuất chính] Tau hoa Ha Noi -> Nha Trang",
+                        "Ô tô Ha Noi -> Nha Trang"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 2",
+                        "Transport options kept after validation: 2"
+                    ],
+                    "hotel_count": 4,
+                    "hotel_titles": [
+                        "Daimond Bay Resort",
+                        "Happy House",
+                        "Vinpearl Deluxe",
+                        "Van Long"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Hòn Đỏ (Nha Trang)",
+                        "Lăng Bà Vú",
+                        "Nhà thờ Núi Nha Trang",
+                        "Phú Khánh (tỉnh)",
+                        "Sân bay Nha Trang"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Vinpearl Deluxe",
+                            "area": "Hon Tre / Nha Trang Bay",
+                            "lat": null,
+                            "lon": null,
+                            "source": "Local fallback dataset",
+                            "confidence": "medium"
+                        }
+                    }
+                }
+            },
+            "transport_count": 2,
+            "hotel_count": 4,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] Tau hoa Ha Noi -> Nha Trang",
+                "Ô tô Ha Noi -> Nha Trang"
+            ],
+            "hotel_titles": [
+                "Daimond Bay Resort",
+                "Happy House",
+                "Vinpearl Deluxe",
+                "Van Long"
+            ],
+            "attraction_titles": [
+                "Hòn Đỏ (Nha Trang)",
+                "Lăng Bà Vú",
+                "Nhà thờ Núi Nha Trang",
+                "Phú Khánh (tỉnh)",
+                "Sân bay Nha Trang"
+            ],
+            "estimated_cost": 8246880
+        },
+        {
+            "destination": "Ha Long",
+            "days": 3,
+            "budget": 7000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 2",
+                        "Transport options kept after validation: 2"
+                    ],
+                    "count": 2
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "Local fallback dataset",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider unavailable or empty. Local fallback active."
+                    ],
+                    "count": 4
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: medium."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 3,
+                        "budget": 7000000,
+                        "per_person_day_budget": 2333333,
+                        "budget_tier": "comfortable",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": -713536,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] Xe khách / limousine Ha Noi -> Ha Long",
+                        "hotel": "Ha Long Pearl",
+                        "attractions": [
+                            "Cầu Cửa Lục 3",
+                            "Cầu Tình Yêu",
+                            "Giếng Đáy"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] Xe khách / limousine Ha Noi -> Ha Long",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Ha Long Pearl",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Cầu Cửa Lục 3",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Ngân sách phù hợp",
+                            "confidence": "high",
+                            "reason": "Tổng chi phí ước tính nằm trong ngân sách khách đã nhập."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 11,
+                    "breakdown": {
+                        "transport": 460800,
+                        "lodging": 1800000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 465664,
+                        "total": 6286464,
+                        "target_budget": 7000000,
+                        "budget_gap": -713536,
+                        "budget_fit": true,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 3,
+                    "score": 10,
+                    "issues": [],
+                    "budget_breakdown": {
+                        "transport": 460800,
+                        "lodging": 1800000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 465664,
+                        "total": 6286464,
+                        "target_budget": 7000000,
+                        "budget_gap": -713536,
+                        "budget_fit": true,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Ha Long",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 3,
+                        "budget": 7000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Ha Long",
+                        "canonical_name": "Ha Long",
+                        "normalized_slug": "ha long",
+                        "iata": null,
+                        "train_station_code": null,
+                        "bus_area_id": null,
+                        "lat": 20.9517,
+                        "lon": 107.08,
+                        "kind": "city",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "HAN",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Hai Phong"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 30491,
+                        "fallback": false
+                    },
+                    "transport_count": 2,
+                    "transport_titles": [
+                        "[Đề xuất chính] Xe khách / limousine Ha Noi -> Ha Long",
+                        "Ô tô Ha Noi -> Ha Long"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 2",
+                        "Transport options kept after validation: 2"
+                    ],
+                    "hotel_count": 4,
+                    "hotel_titles": [
+                        "Ha Long Pearl",
+                        "BMC Thăng Long Hotel",
+                        "Halong Plaza Hotel",
+                        "Houng Bien Hotel"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Cầu Cửa Lục 3",
+                        "Cầu Tình Yêu",
+                        "Giếng Đáy",
+                        "Hang Đầu Gỗ",
+                        "Hà Khánh"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Ha Long Pearl",
+                            "area": "Bai Chay",
+                            "lat": null,
+                            "lon": null,
+                            "source": "Local fallback dataset",
+                            "confidence": "medium"
+                        }
+                    }
+                }
+            },
+            "transport_count": 2,
+            "hotel_count": 4,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] Xe khách / limousine Ha Noi -> Ha Long",
+                "Ô tô Ha Noi -> Ha Long"
+            ],
+            "hotel_titles": [
+                "Ha Long Pearl",
+                "BMC Thăng Long Hotel",
+                "Halong Plaza Hotel",
+                "Houng Bien Hotel"
+            ],
+            "attraction_titles": [
+                "Cầu Cửa Lục 3",
+                "Cầu Tình Yêu",
+                "Giếng Đáy",
+                "Hang Đầu Gỗ",
+                "Hà Khánh"
+            ],
+            "estimated_cost": 6286464
+        },
+        {
+            "destination": "Phu Quoc",
+            "days": 3,
+            "budget": 10000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 1",
+                        "Transport options kept after validation: 1",
+                        "Added local fallback transport choices because live providers returned too few practical options."
+                    ],
+                    "count": 3
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "Local fallback dataset",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider unavailable or empty. Local fallback active."
+                    ],
+                    "count": 4
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: medium."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 3,
+                        "budget": 10000000,
+                        "per_person_day_budget": 3333333,
+                        "budget_tier": "premium",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": 2906000,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] VietJet Air 06:45 -> 08:55",
+                        "hotel": "Lahana Resort Phu Quoc",
+                        "attractions": [
+                            "Cửa Cạn",
+                            "Cửa Dương",
+                            "Dinh Cậu"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] VietJet Air 06:45 -> 08:55",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Lahana Resort Phu Quoc",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Cửa Cạn",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Cần cân chỉnh ngân sách",
+                            "confidence": "medium",
+                            "reason": "Tổng chi phí ước tính vượt ngân sách khoảng 2,906,000 VND."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 12,
+                    "breakdown": {
+                        "transport": 3700000,
+                        "lodging": 2300000,
+                        "attractions": 0,
+                        "meals": 2550000,
+                        "local_transport": 1050000,
+                        "experience": 1350000,
+                        "shopping": 1000000,
+                        "daily_allowance": 3600000,
+                        "experience_adjustment": 1350000,
+                        "contingency": 956000,
+                        "total": 12906000,
+                        "target_budget": 10000000,
+                        "budget_gap": 2906000,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 3,
+                    "score": 9,
+                    "issues": [
+                        "over_budget"
+                    ],
+                    "budget_breakdown": {
+                        "transport": 3700000,
+                        "lodging": 2300000,
+                        "attractions": 0,
+                        "meals": 2550000,
+                        "local_transport": 1050000,
+                        "experience": 1350000,
+                        "shopping": 1000000,
+                        "daily_allowance": 3600000,
+                        "experience_adjustment": 1350000,
+                        "contingency": 956000,
+                        "total": 12906000,
+                        "target_budget": 10000000,
+                        "budget_gap": 2906000,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Phu Quoc",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 3,
+                        "budget": 10000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Phu Quoc",
+                        "canonical_name": "Phu Quoc",
+                        "normalized_slug": "phu quoc",
+                        "iata": "PQC",
+                        "train_station_code": null,
+                        "bus_area_id": null,
+                        "lat": 10.2899,
+                        "lon": 103.984,
+                        "kind": "island",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "Phu Quoc",
+                        "nearest_train_hub": "Ho Chi Minh",
+                        "nearest_bus_hub": "Can Tho"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 29603,
+                        "fallback": false
+                    },
+                    "transport_count": 3,
+                    "transport_titles": [
+                        "[Đề xuất chính] VietJet Air 06:45 -> 08:55",
+                        "Vietnam Airlines 12:10 -> 14:20",
+                        "Ô tô Ha Noi -> Phu Quoc"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 1",
+                        "Transport options kept after validation: 1",
+                        "Added local fallback transport choices because live providers returned too few practical options."
+                    ],
+                    "hotel_count": 4,
+                    "hotel_titles": [
+                        "Lahana Resort Phu Quoc",
+                        "Sea Star Resort",
+                        "Anja Beach Resort",
+                        "Phu House"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Cửa Cạn",
+                        "Cửa Dương",
+                        "Dinh Cậu",
+                        "Dương Đông (Phú Quốc)",
+                        "Phú Quốc"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Sea Star Resort",
+                            "area": "Duong Dong",
+                            "lat": null,
+                            "lon": null,
+                            "source": "Local fallback dataset",
+                            "confidence": "medium"
+                        }
+                    }
+                }
+            },
+            "transport_count": 3,
+            "hotel_count": 4,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] VietJet Air 06:45 -> 08:55",
+                "Vietnam Airlines 12:10 -> 14:20",
+                "Ô tô Ha Noi -> Phu Quoc"
+            ],
+            "hotel_titles": [
+                "Lahana Resort Phu Quoc",
+                "Sea Star Resort",
+                "Anja Beach Resort",
+                "Phu House"
+            ],
+            "attraction_titles": [
+                "Cửa Cạn",
+                "Cửa Dương",
+                "Dinh Cậu",
+                "Dương Đông (Phú Quốc)",
+                "Phú Quốc"
+            ],
+            "estimated_cost": 12906000
+        },
+        {
+            "destination": "Hue",
+            "days": 3,
+            "budget": 7000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 3",
+                        "Transport options kept after validation: 3"
+                    ],
+                    "count": 3
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "Local fallback dataset",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider unavailable or empty. Local fallback active."
+                    ],
+                    "count": 4
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: medium."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 3,
+                        "budget": 7000000,
+                        "per_person_day_budget": 2333333,
+                        "budget_tier": "comfortable",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": -925972,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] Tau hoa Ha Noi -> Hue",
+                        "hotel": "Hong Thien 2 hotel",
+                        "attractions": [
+                            "Cầu Trường Tiền",
+                            "Huế",
+                            "Khách sạn Saigon Morin"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] Tau hoa Ha Noi -> Hue",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Hong Thien 2 hotel",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Cầu Trường Tiền",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Ngân sách phù hợp",
+                            "confidence": "high",
+                            "reason": "Tổng chi phí ước tính nằm trong ngân sách khách đã nhập."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 11,
+                    "breakdown": {
+                        "transport": 1024100,
+                        "lodging": 1040000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 449928,
+                        "total": 6074028,
+                        "target_budget": 7000000,
+                        "budget_gap": -925972,
+                        "budget_fit": true,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 3,
+                    "score": 10,
+                    "issues": [],
+                    "budget_breakdown": {
+                        "transport": 1024100,
+                        "lodging": 1040000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 449928,
+                        "total": 6074028,
+                        "target_budget": 7000000,
+                        "budget_gap": -925972,
+                        "budget_fit": true,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Hue",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 3,
+                        "budget": 7000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Hue",
+                        "canonical_name": "Hue",
+                        "normalized_slug": "hue",
+                        "iata": "HUI",
+                        "train_station_code": "HUE",
+                        "bus_area_id": "26",
+                        "lat": 16.4637,
+                        "lon": 107.5909,
+                        "kind": "city",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "Hue",
+                        "nearest_train_hub": "Hue",
+                        "nearest_bus_hub": "Hue"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 30656,
+                        "fallback": false
+                    },
+                    "transport_count": 3,
+                    "transport_titles": [
+                        "[Đề xuất chính] Tau hoa Ha Noi -> Hue",
+                        "Xe khách / limousine Ha Noi -> Hue",
+                        "Ô tô Ha Noi -> Hue"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 3",
+                        "Transport options kept after validation: 3"
+                    ],
+                    "hotel_count": 4,
+                    "hotel_titles": [
+                        "Hong Thien 2 hotel",
+                        "Tran Ly",
+                        "Thái Sơn",
+                        "Pilgrimage Village"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Cầu Trường Tiền",
+                        "Huế",
+                        "Khách sạn Saigon Morin",
+                        "Nghênh Lương đình",
+                        "Sân vận động Tự Do"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Hong Thien 2 hotel",
+                            "area": "Hue City Center",
+                            "lat": null,
+                            "lon": null,
+                            "source": "Local fallback dataset",
+                            "confidence": "medium"
+                        }
+                    }
+                }
+            },
+            "transport_count": 3,
+            "hotel_count": 4,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] Tau hoa Ha Noi -> Hue",
+                "Xe khách / limousine Ha Noi -> Hue",
+                "Ô tô Ha Noi -> Hue"
+            ],
+            "hotel_titles": [
+                "Hong Thien 2 hotel",
+                "Tran Ly",
+                "Thái Sơn",
+                "Pilgrimage Village"
+            ],
+            "attraction_titles": [
+                "Cầu Trường Tiền",
+                "Huế",
+                "Khách sạn Saigon Morin",
+                "Nghênh Lương đình",
+                "Sân vận động Tự Do"
+            ],
+            "estimated_cost": 6074028
+        },
+        {
+            "destination": "Hoi An",
+            "days": 3,
+            "budget": 7000000,
+            "departure_date": "2026-05-10",
+            "provider_status": {
+                "weather": {
+                    "status": "empty",
+                    "source": "OpenWeather",
+                    "notes": [
+                        "OPENWEATHER_API_KEY is missing."
+                    ],
+                    "count": 0
+                },
+                "transport": {
+                    "status": "ok",
+                    "source": "Laravel native transport strategy",
+                    "notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 2",
+                        "Transport options kept after validation: 2"
+                    ],
+                    "count": 2
+                },
+                "hotels": {
+                    "status": "ok",
+                    "source": "OpenStreetMap",
+                    "notes": [
+                        "Hotel search used 1 room(s) for 1 adult(s) and 0 child(ren).",
+                        "Live hotel provider active: OpenStreetMap."
+                    ],
+                    "count": 4
+                },
+                "attractions": {
+                    "status": "ok",
+                    "source": "Geoapify/OpenStreetMap",
+                    "notes": [
+                        "Attraction search strategy: general.",
+                        "Hotel context confidence: high."
+                    ],
+                    "count": 6
+                },
+                "advisor": {
+                    "status": "ok",
+                    "source": "Laravel TravelAdvisor policy",
+                    "notes": [
+                        "budget fit + source confidence + interest fit + trip duration trade-offs"
+                    ],
+                    "count": 4,
+                    "profile": {
+                        "travelers": 1,
+                        "days": 3,
+                        "budget": 7000000,
+                        "per_person_day_budget": 2333333,
+                        "budget_tier": "comfortable",
+                        "preferred_transport": "",
+                        "priorities": [
+                            "balanced"
+                        ],
+                        "missing_signals": [
+                            "interests"
+                        ]
+                    },
+                    "selection_method": "budget fit + source confidence + interest fit + trip duration trade-offs",
+                    "missing_signals": [
+                        "interests"
+                    ],
+                    "budget_gap": 1130240,
+                    "primary_picks": {
+                        "transport": "[Đề xuất chính] Xe khách / limousine Ha Noi -> Hoi An",
+                        "hotel": "Golden Holiday",
+                        "attractions": [
+                            "Bảo tàng Gốm sứ Mậu dịch",
+                            "Bảo tàng Hội An",
+                            "Chùa Cầu"
+                        ]
+                    },
+                    "agent_reviews": [
+                        {
+                            "agent": "TransportAgent",
+                            "role": "Chọn cách đi phù hợp với thời gian, ngân sách và phương tiện khách ưu tiên.",
+                            "pick": "[Đề xuất chính] Xe khách / limousine Ha Noi -> Hoi An",
+                            "confidence": "high",
+                            "reason": "Khách không khóa phương tiện, agent ưu tiên cân bằng chi phí và độ khả thi."
+                        },
+                        {
+                            "agent": "HotelAgent",
+                            "role": "Lọc nơi lưu trú theo giá tổng kỳ nghỉ, độ tin cậy nguồn giá và mức thoải mái.",
+                            "pick": "Golden Holiday",
+                            "confidence": "high",
+                            "reason": "Giá booking-grade được ưu tiên hơn kết quả chỉ mang tính discovery."
+                        },
+                        {
+                            "agent": "AttractionAgent",
+                            "role": "Xếp trải nghiệm theo số ngày, sở thích và điều kiện thời tiết.",
+                            "pick": "Bảo tàng Gốm sứ Mậu dịch",
+                            "confidence": "medium",
+                            "reason": "Khách chưa nhập sở thích, agent chọn điểm khả thi và chi phí thấp."
+                        },
+                        {
+                            "agent": "RootAdvisor",
+                            "role": "Tổng hợp các agent con thành một gói đề xuất có thể hành động.",
+                            "pick": "Cần cân chỉnh ngân sách",
+                            "confidence": "medium",
+                            "reason": "Tổng chi phí ước tính vượt ngân sách khoảng 1,130,240 VND."
+                        }
+                    ]
+                },
+                "cost": {
+                    "status": "ok",
+                    "source": "Laravel calculated trip allowance",
+                    "notes": [
+                        "Budget was recalculated from the optimized itinerary in Laravel."
+                    ],
+                    "count": 12,
+                    "breakdown": {
+                        "transport": 2268000,
+                        "lodging": 1700000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 602240,
+                        "total": 8130240,
+                        "target_budget": 7000000,
+                        "budget_gap": 1130240,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    }
+                },
+                "itinerary_optimizer": {
+                    "status": "ok",
+                    "source": "Laravel ItineraryOptimizerAgent",
+                    "notes": [
+                        "Built day-by-day itinerary with one primary attraction per day.",
+                        "Evaluated budget fit and missing provider signals."
+                    ],
+                    "count": 3,
+                    "score": 9,
+                    "issues": [
+                        "over_budget"
+                    ],
+                    "budget_breakdown": {
+                        "transport": 2268000,
+                        "lodging": 1700000,
+                        "attractions": 0,
+                        "meals": 1650000,
+                        "local_transport": 660000,
+                        "experience": 750000,
+                        "shopping": 500000,
+                        "daily_allowance": 2310000,
+                        "experience_adjustment": 750000,
+                        "contingency": 602240,
+                        "total": 8130240,
+                        "target_budget": 7000000,
+                        "budget_gap": 1130240,
+                        "budget_fit": false,
+                        "method": "round_trip_transport + lodging + attraction_tickets + meals + local_transport + experience + shopping + 8_percent_contingency",
+                        "notes": [
+                            "Budget was recalculated from the optimized itinerary in Laravel."
+                        ]
+                    },
+                    "revision_count": 0
+                },
+                "debug": {
+                    "request": {
+                        "destination": "Hoi An",
+                        "origin": "HAN",
+                        "lang": "vi",
+                        "departure_date": "2026-05-10",
+                        "preferred_transport": "",
+                        "days": 3,
+                        "budget": 7000000,
+                        "interests": [],
+                        "travelers": 1,
+                        "adults": 1,
+                        "children": 0,
+                        "child_ages": []
+                    },
+                    "resolved_origin": {
+                        "input_value": "HAN",
+                        "canonical_name": "Ha Noi",
+                        "normalized_slug": "ha noi",
+                        "iata": "HAN",
+                        "train_station_code": "HNO",
+                        "bus_area_id": "24",
+                        "lat": 21.0285,
+                        "lon": 105.8542,
+                        "kind": "city",
+                        "matched_by": "iata",
+                        "nearest_airport_hub": "Ha Noi",
+                        "nearest_train_hub": "Ha Noi",
+                        "nearest_bus_hub": "Ha Noi"
+                    },
+                    "resolved_destination": {
+                        "input_value": "Hoi An",
+                        "canonical_name": "Hoi An",
+                        "normalized_slug": "hoi an",
+                        "iata": "DAD",
+                        "train_station_code": null,
+                        "bus_area_id": "40",
+                        "lat": 15.8801,
+                        "lon": 108.338,
+                        "kind": "city",
+                        "matched_by": "canonical",
+                        "nearest_airport_hub": "Hoi An",
+                        "nearest_train_hub": "Da Nang",
+                        "nearest_bus_hub": "Hoi An"
+                    },
+                    "orchestration": {
+                        "mode": "parallel",
+                        "driver": "process",
+                        "agents": [
+                            "weather-agent",
+                            "transport-agent",
+                            "hotel-agent"
+                        ],
+                        "duration_ms": 9724,
+                        "fallback": false
+                    },
+                    "transport_count": 2,
+                    "transport_titles": [
+                        "[Đề xuất chính] Xe khách / limousine Ha Noi -> Hoi An",
+                        "Ô tô Ha Noi -> Hoi An"
+                    ],
+                    "transport_notes": [
+                        "Strategy selected: MixedTransportStrategy",
+                        "Transport options returned before validation: 2",
+                        "Transport options kept after validation: 2"
+                    ],
+                    "hotel_count": 4,
+                    "hotel_titles": [
+                        "Golden Holiday",
+                        "Hotel My Chau",
+                        "Minh Quang",
+                        "Sunflower Hotel"
+                    ],
+                    "attraction_count": 6,
+                    "attraction_titles": [
+                        "Bảo tàng Gốm sứ Mậu dịch",
+                        "Bảo tàng Hội An",
+                        "Chùa Cầu",
+                        "Công viên Hội An (Quảng Nam)",
+                        "Hội An Tây"
+                    ],
+                    "attraction_debug": {
+                        "hotel_context": {
+                            "name": "Golden Holiday",
+                            "area": "Hoi An",
+                            "lat": 15.887589,
+                            "lon": 108.3279837,
+                            "source": "OpenStreetMap",
+                            "confidence": "high"
+                        }
+                    }
+                }
+            },
+            "transport_count": 2,
+            "hotel_count": 4,
+            "attraction_count": 6,
+            "transport_titles": [
+                "[Đề xuất chính] Xe khách / limousine Ha Noi -> Hoi An",
+                "Ô tô Ha Noi -> Hoi An"
+            ],
+            "hotel_titles": [
+                "Golden Holiday",
+                "Hotel My Chau",
+                "Minh Quang",
+                "Sunflower Hotel"
+            ],
+            "attraction_titles": [
+                "Bảo tàng Gốm sứ Mậu dịch",
+                "Bảo tàng Hội An",
+                "Chùa Cầu",
+                "Công viên Hội An (Quảng Nam)",
+                "Hội An Tây"
+            ],
+            "estimated_cost": 8130240
+        }
+    ]
+}

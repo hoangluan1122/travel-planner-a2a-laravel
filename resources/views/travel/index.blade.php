@@ -144,6 +144,17 @@
     $transport = array_map($normalizeItem, data_get($result, 'transport_options', []));
     $hotels = array_map($normalizeItem, data_get($result, 'hotels', []));
     $attractions = array_map($normalizeItem, data_get($result, 'attractions', []));
+    $transportIcon = function ($item): string {
+        $value = mb_strtolower((string) data_get($item, 'title').' '.(string) data_get($item, 'details').' '.(string) data_get($item, 'reason'));
+
+        return match (true) {
+            str_contains($value, 'tàu') || str_contains($value, 'tau') || str_contains($value, 'train') || str_contains($value, 'rail') => 'train',
+            str_contains($value, 'xe khách') || str_contains($value, 'limousine') || str_contains($value, 'bus') => 'bus',
+            str_contains($value, 'ô tô') || str_contains($value, 'oto') || str_contains($value, 'o to') || str_contains($value, 'car') || str_contains($value, 'road transfer') => 'car-front',
+            str_contains($value, 'máy bay') || str_contains($value, 'may bay') || str_contains($value, 'flight') || str_contains($value, 'airlines') || str_contains($value, 'vietjet') || str_contains($value, 'vietnam airlines') => 'plane',
+            default => 'route',
+        };
+    };
     $hotels = array_map(function (array $item) use ($itemFacts, $readableReason): array {
         $facts = $itemFacts($item, 'hotel');
         $item['raw_details'] = $item['details'];
@@ -167,6 +178,29 @@
     $weatherForecast = data_get($result, 'weather_extra.forecast', []);
     $weatherCurrent = is_array($weatherCurrent) ? $weatherCurrent : [];
     $weatherForecast = is_array($weatherForecast) ? $weatherForecast : [];
+    if ($weatherCurrent !== [] && ! array_key_exists('temp', $weatherCurrent)) {
+        $weatherCurrent = [
+            'temp' => data_get($weatherCurrent, 'main.temp'),
+            'feels_like' => data_get($weatherCurrent, 'main.feels_like'),
+            'description' => data_get($weatherCurrent, 'weather.0.description'),
+            'icon' => data_get($weatherCurrent, 'weather.0.icon'),
+            'humidity' => data_get($weatherCurrent, 'main.humidity'),
+            'wind' => data_get($weatherCurrent, 'wind.speed') !== null ? data_get($weatherCurrent, 'wind.speed').' m/s' : null,
+            'clouds' => data_get($weatherCurrent, 'clouds.all'),
+        ];
+    }
+    $weatherForecast = array_map(function ($day) use ($text) {
+        $date = data_get($day, 'date');
+
+        return [
+            'day_label' => data_get($day, 'day_label') ?: ($date ? \Carbon\Carbon::parse($date)->format('d/m') : 'Dự báo'),
+            'description' => $text(data_get($day, 'description')),
+            'icon' => data_get($day, 'icon'),
+            'temp_min' => data_get($day, 'temp_min'),
+            'temp_max' => data_get($day, 'temp_max'),
+            'rain_probability' => data_get($day, 'rain_probability'),
+        ];
+    }, $weatherForecast);
     $weatherSummary = $text(data_get($result, 'weather_summary'), 'Điều kiện hiện tại và dự báo live sẽ hiển thị tại đây.');
     $finalRecommendation = $text(data_get($result, 'final_recommendation'));
     $childAges = data_get($parsed, 'child_ages', []);
@@ -478,7 +512,7 @@
         <a class="nav-item" href="#itinerary"><i data-lucide="calendar-days"></i><span>Lịch trình</span></a>
         <a class="nav-item" href="#budget"><i data-lucide="pie-chart"></i><span>Ngân sách</span></a>
         <a class="nav-item" href="#weather"><i data-lucide="cloud-sun"></i><span>Thời tiết</span></a>
-        <a class="nav-item" href="#travel"><i data-lucide="plane"></i><span>Di chuyển & lưu trú</span></a>
+        <a class="nav-item" href="#travel"><i data-lucide="route"></i><span>Di chuyển & lưu trú</span></a>
         <a class="nav-item" href="#places"><i data-lucide="landmark"></i><span>Khám phá</span></a>
         <a class="nav-item" href="#notes"><i data-lucide="notebook-pen"></i><span>Ghi chú</span></a>
       </nav>
@@ -566,7 +600,7 @@
                 <span class="field-label"><i data-lucide="wallet"></i> Ngân sách</span>
                 <strong id="budget_label">5 triệu</strong>
               </span>
-              <input id="budget_input" type="range" min="1" max="100" step="1" value="{{ $budgetValue ? intdiv((int) $budgetValue, 1000000) : 5 }}" />
+              <input id="budget_input" name="budget_millions" type="range" min="1" max="100" step="1" value="{{ $budgetValue ? intdiv((int) $budgetValue, 1000000) : 5 }}" />
             </label>
 
             <div class="field-grid">
@@ -675,7 +709,7 @@
                   <span class="insight-kicker">Ưu tiên đề xuất</span>
                   <h3>Lựa chọn chính</h3>
                   <div class="summary-list">
-                    <a class="summary-item actionable jump-link" href="#transport-full" data-target="transport-full"><span class="icon-tile"><i data-lucide="plane"></i></span><div><strong>Di chuyển</strong><span>{{ $text(data_get($picks, 'transport'), 'Chưa có phương án đủ tin cậy') }}</span></div><span class="price">Xem giá <i data-lucide="arrow-down"></i></span></a>
+                    <a class="summary-item actionable jump-link" href="#transport-full" data-target="transport-full"><span class="icon-tile"><i data-lucide="{{ $transportIcon($transport[0] ?? []) }}"></i></span><div><strong>Di chuyển</strong><span>{{ $text(data_get($picks, 'transport'), 'Chưa có phương án đủ tin cậy') }}</span></div><span class="price">Xem giá <i data-lucide="arrow-down"></i></span></a>
                     <a class="summary-item actionable jump-link" href="#stays" data-target="stays"><span class="icon-tile"><i data-lucide="bed-double"></i></span><div><strong>Lưu trú</strong><span>{{ $text(data_get($picks, 'hotel'), 'Chưa có giá lưu trú đủ rõ') }}</span></div><span class="price">Xem chi tiết <i data-lucide="arrow-down"></i></span></a>
                     <a class="summary-item actionable jump-link" href="#places" data-target="places"><span class="icon-tile"><i data-lucide="landmark"></i></span><div><strong>Trải nghiệm</strong><span>{{ $text(data_get($picks, 'attractions'), 'Chưa có điểm tham quan phù hợp') }}</span></div><span class="price">Xem điểm đến <i data-lucide="arrow-down"></i></span></a>
                   </div>
@@ -793,7 +827,7 @@
               </div>
               <div class="forecast-grid">
                 @forelse(array_slice($weatherForecast, 0, 6) as $day)
-                  <div class="forecast-card"><strong>{{ data_get($day, 'day_label') }}</strong>@if(data_get($day, 'icon'))<img src="https://openweathermap.org/img/wn/{{ data_get($day, 'icon') }}@2x.png" alt="Forecast icon" />@endif<span>{{ data_get($day, 'temp_min') }}° - {{ data_get($day, 'temp_max') }}°</span></div>
+                  <div class="forecast-card"><strong>{{ data_get($day, 'day_label') }}</strong>@if(data_get($day, 'icon'))<img src="https://openweathermap.org/img/wn/{{ data_get($day, 'icon') }}@2x.png" alt="Forecast icon" />@endif<span>{{ data_get($day, 'temp_min') }}° - {{ data_get($day, 'temp_max') }}°</span><span>{{ data_get($day, 'description') }}</span>@if(data_get($day, 'rain_probability') !== null)<span>Mưa {{ data_get($day, 'rain_probability') }}%</span>@endif</div>
                 @empty
                   @foreach(['T2','T3','T4','T5','T6','T7'] as $label)<div class="forecast-card"><strong>{{ $label }}</strong><span>Dự báo</span><span>Đang chờ</span></div>@endforeach
                 @endforelse
@@ -802,12 +836,12 @@
           </section>
 
           <section class="card pad" id="travel">
-            <div class="card-header"><div class="section-title"><span class="icon-tile"><i data-lucide="plane"></i></span><div><h2>Tóm tắt di chuyển và khách sạn</h2><p>So sánh nhanh các phương án di chuyển và lưu trú.</p></div></div></div>
+            <div class="card-header"><div class="section-title"><span class="icon-tile"><i data-lucide="route"></i></span><div><h2>Tóm tắt di chuyển và khách sạn</h2><p>So sánh nhanh các phương án di chuyển và lưu trú.</p></div></div></div>
             <div class="summary-list">
               @forelse(array_slice($transport, 0, 3) as $item)
-                <article class="summary-item"><span class="icon-tile"><i data-lucide="plane"></i></span><div><strong>{{ data_get($item, 'title') }}</strong><span>{{ data_get($item, 'details') }} @if(data_get($item, 'reason')) - {{ data_get($item, 'reason') }} @endif</span></div><span class="price">{{ data_get($item, 'price') > 0 ? $fmt(data_get($item, 'price')).' VND' : 'Chưa có giá live' }}</span></article>
+                <article class="summary-item"><span class="icon-tile"><i data-lucide="{{ $transportIcon($item) }}"></i></span><div><strong>{{ data_get($item, 'title') }}</strong><span>{{ data_get($item, 'details') }} @if(data_get($item, 'reason')) - {{ data_get($item, 'reason') }} @endif</span></div><span class="price">{{ data_get($item, 'price') > 0 ? $fmt(data_get($item, 'price')).' VND' : 'Chưa có giá live' }}</span></article>
               @empty
-                <article class="summary-item"><span class="icon-tile"><i data-lucide="plane"></i></span><div><strong>Phương án di chuyển</strong><span>Tạo kế hoạch để so sánh máy bay, tàu, xe khách hoặc ô tô.</span></div><span class="price">Đang chờ</span></article>
+                <article class="summary-item"><span class="icon-tile"><i data-lucide="route"></i></span><div><strong>Phương án di chuyển</strong><span>Tạo kế hoạch để so sánh máy bay, tàu, xe khách hoặc ô tô.</span></div><span class="price">Đang chờ</span></article>
               @endforelse
               @forelse(array_slice($hotels, 0, 3) as $item)
                 <article class="summary-item"><span class="icon-tile"><i data-lucide="bed-double"></i></span><div><strong>{{ data_get($item, 'title') }}</strong><span>{{ data_get($item, 'details') }}</span><div class="chip-row" style="margin-top:8px;"><button class="chip" type="button" onclick="openHotelVerify('booking', @js(data_get($item, 'title')))">Booking</button><button class="chip" type="button" onclick="openHotelVerify('agoda', @js(data_get($item, 'title')))">Agoda</button><button class="chip" type="button" onclick="openHotelVerify('traveloka', @js(data_get($item, 'title')))">Traveloka</button></div></div><span class="price">{{ data_get($item, 'price') > 0 ? $fmt(data_get($item, 'price')).' VND' : 'Chưa có giá API' }}</span></article>
@@ -821,7 +855,7 @@
             <div class="card-header"><div class="section-title"><span class="icon-tile"><i data-lucide="route"></i></span><div><h2>Tất cả phương án di chuyển</h2><p>Hiển thị đầy đủ transport_options backend trả về.</p></div></div></div>
             <div class="summary-list">
               @forelse($transport as $item)
-                <article class="summary-item align-top"><span class="icon-tile"><i data-lucide="navigation"></i></span><div><strong>{{ data_get($item, 'title') }}</strong><span>{{ data_get($item, 'details') }}</span>@if(data_get($item, 'reason'))<span>Lý do: {{ data_get($item, 'reason') }}</span>@endif @if(data_get($item, 'score'))<span>Điểm phù hợp: {{ data_get($item, 'score') }}</span>@endif</div><span class="price">{{ data_get($item, 'price') > 0 ? $fmt(data_get($item, 'price')).' VND' : 'Đang cập nhật giá' }}</span></article>
+                <article class="summary-item align-top"><span class="icon-tile"><i data-lucide="{{ $transportIcon($item) }}"></i></span><div><strong>{{ data_get($item, 'title') }}</strong><span>{{ data_get($item, 'details') }}</span>@if(data_get($item, 'reason'))<span>Lý do: {{ data_get($item, 'reason') }}</span>@endif @if(data_get($item, 'score'))<span>Điểm phù hợp: {{ data_get($item, 'score') }}</span>@endif</div><span class="price">{{ data_get($item, 'price') > 0 ? $fmt(data_get($item, 'price')).' VND' : 'Đang cập nhật giá' }}</span></article>
               @empty
                 <div class="empty">Chưa có dữ liệu di chuyển.</div>
               @endforelse

@@ -26,10 +26,10 @@ final class ItineraryOptimizerAgent
             for ($day = 1; $day <= $request->days; $day++) {
                 $daily[] = new DailyPlan(
                     day: $day,
-                    title: ($isVi ? 'Ngay ' : 'Day ').$day.' - '.$request->destination,
-                    morning: $isVi ? 'Bat dau nhe quanh diem den, giu lich linh hoat.' : 'Start with a relaxed exploration around the destination.',
-                    afternoon: $isVi ? 'Chon quan an, ca phe hoac diem trong nha theo thoi tiet.' : 'Choose food, cafes, or indoor stops based on weather.',
-                    evening: ($isVi ? 'An toi va nghi dem tai ' : 'Dinner and overnight at ').$hotelName.'.',
+                    title: ($isVi ? 'Ngày ' : 'Day ').$day.' - '.$request->destination,
+                    morning: $isVi ? 'Bắt đầu nhẹ quanh điểm đến, giữ lịch linh hoạt.' : 'Start with a relaxed exploration around the destination.',
+                    afternoon: $isVi ? 'Chọn quán ăn, cà phê hoặc điểm trong nhà theo thời tiết.' : 'Choose food, cafes, or indoor stops based on weather.',
+                    evening: ($isVi ? 'Ăn tối và nghỉ đêm tại ' : 'Dinner and overnight at ').$hotelName.'.',
                     estimatedCost: -1,
                 );
             }
@@ -38,12 +38,12 @@ final class ItineraryOptimizerAgent
                 $attraction = $selected[($day - 1) % count($selected)];
                 $daily[] = new DailyPlan(
                     day: $day,
-                    title: ($isVi ? 'Ngay ' : 'Day ').$day.' - '.$attraction->title,
-                    morning: ($isVi ? 'Uu tien ' : 'Prioritize ').$attraction->title.($isVi ? ' vao buoi sang.' : ' in the morning.'),
+                    title: ($isVi ? 'Ngày ' : 'Day ').$day.' - '.$attraction->title,
+                    morning: ($isVi ? 'Ưu tiên ' : 'Prioritize ').$attraction->title.($isVi ? ' vào buổi sáng.' : ' in the morning.'),
                     afternoon: $day === $request->days
-                        ? ($isVi ? 'Giu buoi chieu nhe de mua sam nho va chuan bi ve.' : 'Keep the afternoon light for small shopping and departure prep.')
-                        : ($isVi ? 'Kham pha khu vuc lan can, an uong/ca phe dia phuong.' : 'Explore nearby areas, local food, or cafes.'),
-                    evening: ($isVi ? 'An toi va nghi dem tai ' : 'Dinner and overnight at ').$hotelName.'.',
+                        ? ($isVi ? 'Giữ buổi chiều nhẹ để mua sắm nhỏ và chuẩn bị về.' : 'Keep the afternoon light for small shopping and departure prep.')
+                        : ($isVi ? 'Khám phá khu vực lân cận, ăn uống hoặc cà phê địa phương.' : 'Explore nearby areas, local food, or cafes.'),
+                    evening: ($isVi ? 'Ăn tối và nghỉ đêm tại ' : 'Dinner and overnight at ').$hotelName.'.',
                     estimatedCost: $attraction->price > 0 ? $attraction->price : -1,
                 );
             }

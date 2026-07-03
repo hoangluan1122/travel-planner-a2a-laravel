@@ -24,9 +24,10 @@ final class AttractionAgent
         $items = [];
         $rainy = str_contains(strtolower($weather->summary), 'rain') || str_contains(strtolower($weather->summary), 'mua');
 
-        $rows = $this->live->fetchLiveAttractions($request->destination);
-        $source = 'Geoapify';
-        $notes = ['Attraction search strategy: live provider ranking.', 'Hotel context confidence: '.($hotelContext['confidence'] ?? 'none').'.'];
+        $strategy = array_intersect(['beach', 'swimming'], $request->interests) !== [] ? 'beach_swimming' : 'general';
+        $rows = $this->live->fetchActivityAttractions($request->destination, $strategy, $hotelContext);
+        $source = $strategy === 'beach_swimming' ? 'Curated/Geoapify/OpenStreetMap activity search' : 'Geoapify/OpenStreetMap';
+        $notes = ['Attraction search strategy: '.$strategy.'.', 'Hotel context confidence: '.($hotelContext['confidence'] ?? 'none').'.'];
         if ($rows === []) {
             $rows = $this->data->attractions($request->destination);
             $source = 'Local fallback dataset';
@@ -41,10 +42,18 @@ final class AttractionAgent
             $score = round($interestScore * 4 + $weatherScore * 2 + $priceScore + 1, 2);
             $items[] = new Recommendation(
                 title: (string) ($row['name'] ?? 'Attraction'),
-                details: sprintf('Type: %s | Area: %s | Tags: %s | Source: %s', $row['type'] ?? 'outdoor', $row['area'] ?? $hotelContext['area'] ?? $request->destination, implode(', ', $tags), $row['source'] ?? $source),
+                details: sprintf(
+                    'Loại: %s | Khu vực: %s | Phù hợp: %s | Nguồn: %s%s',
+                    $row['type'] ?? 'outdoor',
+                    $row['area'] ?? $hotelContext['area'] ?? $request->destination,
+                    $row['suitability'] ?? implode(', ', $tags),
+                    $row['source'] ?? $source,
+                    isset($row['distance_to_hotel_km']) ? ' | Cách nơi lưu trú khoảng '.$row['distance_to_hotel_km'].' km' : '',
+                ),
                 price: (int) ($row['cost'] ?? 0),
                 score: $score,
-                reason: 'Phu hop so thich, boi canh luu tru va thoi tiet hien co.',
+                reason: 'Phù hợp sở thích, bối cảnh lưu trú và điều kiện thời tiết hiện có.',
+                imageUrl: (string) ($row['photo_url'] ?? ''),
             );
         }
 
@@ -56,7 +65,7 @@ final class AttractionAgent
 
         return new AgentResult(
             agent: $this->name,
-            summary: 'Attractions ranked by interests, weather and hotel context.',
+            summary: 'Điểm tham quan được xếp theo sở thích, thời tiết và vị trí lưu trú.',
             recommendations: array_slice($items, 0, 6),
             notes: $notes,
             source: $source,

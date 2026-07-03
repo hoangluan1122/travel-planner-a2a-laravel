@@ -1,0 +1,548 @@
+{
+    "summary": {
+        "total_python_cases": 7,
+        "total_laravel_cases": 7,
+        "matched_cases": 7,
+        "clean_cases": 0,
+        "issue_count": 28
+    },
+    "cases": [
+        {
+            "destination": "Da Lat",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_status_mismatch",
+                "transport_title_no_overlap",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 5,
+                "laravel_count": 1,
+                "count_equal": false,
+                "python_status": "fallback",
+                "laravel_status": "ok",
+                "status_equal": false,
+                "python_titles": [
+                    "[Đề xuất chính] SE9 Ha Noi 12:50 -> Nha Trang 17:38 (via nearest hub: Nha Trang)",
+                    "[Tiết kiệm] SE7 Ha Noi 06:00 -> Nha Trang 09:09 (via nearest hub: Nha Trang)",
+                    "[Tiết kiệm] SE5 Ha Noi 08:55 -> Nha Trang 11:21 (via nearest hub: Nha Trang)",
+                    "[Tiết kiệm] SE3 Ha Noi 19:20 -> Nha Trang 21:02 (via nearest hub: Nha Trang)",
+                    "[Tiết kiệm] SE1 Ha Noi 20:50 -> Nha Trang 21:37 (via nearest hub: Nha Trang)"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Ô tô Ha Noi -> Da Lat"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 4,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Binh Yen",
+                    "Du Lịch Công Đoàn",
+                    "Sammy",
+                    "Như Anh"
+                ],
+                "laravel_titles": [
+                    "Binh Yen",
+                    "Du Lịch Công Đoàn",
+                    "Như Anh",
+                    "Sammy"
+                ],
+                "title_overlap": 4
+            },
+            "attraction": {
+                "python_count": 6,
+                "laravel_count": 6,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Thung Lũng Tình Yêu",
+                    "Đồi Radar",
+                    "Núi Lang Biang",
+                    "Cáp Treo Đà Lạt",
+                    "Phòng Vé Máy Bay"
+                ],
+                "laravel_titles": [
+                    "Bảo tàng Lâm Đồng",
+                    "Ga Đà Lạt",
+                    "Lâm Viên – Đà Lạt",
+                    "Thiên Vương Cổ Sát",
+                    "Thiền viện Trúc Lâm Đà Lạt"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 3529000,
+                "laravel": 44038434,
+                "delta": 40509434
+            }
+        },
+        {
+            "destination": "Da Nang",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_title_no_overlap",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 8,
+                "laravel_count": 3,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "[Đề xuất chính] SE9 Ha Noi 12:50 -> Da Nang 06:14",
+                    "[Tiết kiệm] SE3 Ha Noi 19:20 -> Da Nang 10:36",
+                    "[Tiết kiệm] SE1 Ha Noi 20:50 -> Da Nang 12:12",
+                    "[Tiết kiệm] SE7 Ha Noi 06:00 -> Da Nang 22:43",
+                    "[Tiết kiệm] SE5 Ha Noi 08:55 -> Da Nang 01:31"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Tau hoa Ha Noi -> Da Nang",
+                    "Xe khách / limousine Ha Noi -> Da Nang",
+                    "Ô tô Ha Noi -> Da Nang"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 4,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Son Tra Resort & Spa",
+                    "Tan Vinh",
+                    "Sanouva Danang Hotel",
+                    "Jimy"
+                ],
+                "laravel_titles": [
+                    "Jimy",
+                    "Sanouva Danang Hotel",
+                    "Son Tra Resort & Spa",
+                    "Tan Vinh"
+                ],
+                "title_overlap": 4
+            },
+            "attraction": {
+                "python_count": 6,
+                "laravel_count": 6,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Ban Co Peak",
+                    "Núi Sơn Trà",
+                    "Đèo Hải Vân",
+                    "Mũi Đà Nẵng",
+                    "Thuỷ Sơn"
+                ],
+                "laravel_titles": [
+                    "An Khê, Đà Nẵng",
+                    "Bảo tàng Quân khu 5, Đà Nẵng",
+                    "Công viên 29 tháng 3",
+                    "Hòa Cường",
+                    "Hải Châu (quận)"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 2403000,
+                "laravel": 6924312,
+                "delta": 4521312
+            }
+        },
+        {
+            "destination": "Nha Trang",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_title_no_overlap",
+                "hotel_count_mismatch",
+                "hotel_status_mismatch",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 6,
+                "laravel_count": 2,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Bamboo Airways HAN -> CXR",
+                    "Vietjet HAN -> CXR",
+                    "Vietjet HAN -> CXR",
+                    "Vietnam Airlines HAN -> CXR",
+                    "Vietnam Airlines HAN -> CXR"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Tau hoa Ha Noi -> Nha Trang",
+                    "Ô tô Ha Noi -> Nha Trang"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 0,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "empty",
+                "status_equal": false,
+                "python_titles": [
+                    "Vinpearl Deluxe",
+                    "Daimond Bay Resort",
+                    "Happy House",
+                    "Van Long"
+                ],
+                "laravel_titles": [],
+                "title_overlap": 0
+            },
+            "attraction": {
+                "python_count": 6,
+                "laravel_count": 6,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Bãi Tiên",
+                    "Nhà Bảo Đại",
+                    "Nghĩa trang liệt sĩ Hòn Dung",
+                    "Mũi Kê Gà",
+                    "Coco Dive centre"
+                ],
+                "laravel_titles": [
+                    "Hòn Đỏ (Nha Trang)",
+                    "Nha Trang (phường)",
+                    "Nhà thờ Núi Nha Trang",
+                    "Phú Khánh (tỉnh)",
+                    "Sân bay Nha Trang"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 4032000,
+                "laravel": 7814880,
+                "delta": 3782880
+            }
+        },
+        {
+            "destination": "Ha Long",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_title_no_overlap",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 1,
+                "laravel_count": 2,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "[Fallback] Surface transfer Ha Noi -> Ha Long via Hai Phong"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Xe khách / limousine Ha Noi -> Ha Long",
+                    "Ô tô Ha Noi -> Ha Long"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 4,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Ha Long Pearl",
+                    "BMC Thăng Long Hotel",
+                    "Halong Plaza Hotel",
+                    "Houng Bien Hotel"
+                ],
+                "laravel_titles": [
+                    "BMC Thăng Long Hotel",
+                    "Ha Long Pearl",
+                    "Halong Plaza Hotel",
+                    "Van Nam"
+                ],
+                "title_overlap": 3
+            },
+            "attraction": {
+                "python_count": 6,
+                "laravel_count": 6,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Núi Cao Vọng",
+                    "Động Mê Cung",
+                    "Vịnh Hạ Long",
+                    "Động Hoa Cương",
+                    "Hang Dinh"
+                ],
+                "laravel_titles": [
+                    "Bạch Đằng, Hạ Long",
+                    "Cao Thắng (phường)",
+                    "Hồng Gai (phường)",
+                    "Núi Bài Thơ",
+                    "Trần Hưng Đạo, Hạ Long"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 1920000,
+                "laravel": 6178464,
+                "delta": 4258464
+            }
+        },
+        {
+            "destination": "Phu Quoc",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_title_no_overlap",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 5,
+                "laravel_count": 1,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Vietjet HAN -> PQC",
+                    "Vietjet HAN -> PQC",
+                    "Vietjet HAN -> PQC",
+                    "Vietnam Airlines HAN -> PQC",
+                    "Sun PhuQuoc Airways HAN -> PQC"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Ô tô Ha Noi -> Phu Quoc"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 4,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Chen Sea Resort",
+                    "Freedomland",
+                    "Orient Hotel",
+                    "Mai House resort"
+                ],
+                "laravel_titles": [
+                    "Chen Sea Resort",
+                    "Freedomland",
+                    "Nataya Round House Coral Bay Resort",
+                    "Orient Hotel"
+                ],
+                "title_overlap": 3
+            },
+            "attraction": {
+                "python_count": 6,
+                "laravel_count": 6,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Suối Tranh",
+                    "Duc Ninh Pepper Farm",
+                    "Nước Mắm Khải Hoàn",
+                    "Vườn Tiêu Ngọc Hà",
+                    "Da Chong Port"
+                ],
+                "laravel_titles": [
+                    "Cửa Cạn",
+                    "Cửa Dương",
+                    "Dinh Cậu",
+                    "Dương Đông (Phú Quốc)",
+                    "Phú Quốc"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 3676600,
+                "laravel": 50749172,
+                "delta": 47072572
+            }
+        },
+        {
+            "destination": "Hue",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_title_no_overlap",
+                "hotel_count_mismatch",
+                "hotel_status_mismatch",
+                "attraction_count_mismatch",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 8,
+                "laravel_count": 3,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "[Đề xuất chính] SE9 Ha Noi 12:50 -> Hue 03:14",
+                    "[Tiết kiệm] SE3 Ha Noi 19:20 -> Hue 07:59",
+                    "[Tiết kiệm] SE1 Ha Noi 20:50 -> Hue 09:35",
+                    "[Tiết kiệm] SE7 Ha Noi 06:00 -> Hue 19:53",
+                    "[Tiết kiệm] SE5 Ha Noi 08:55 -> Hue 22:38"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Tau hoa Ha Noi -> Hue",
+                    "Xe khách / limousine Ha Noi -> Hue",
+                    "Ô tô Ha Noi -> Hue"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 0,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "empty",
+                "status_equal": false,
+                "python_titles": [
+                    "Hong Thien 2 hotel",
+                    "Tran Ly",
+                    "Pilgrimage Village",
+                    "Thái Sơn"
+                ],
+                "laravel_titles": [],
+                "title_overlap": 0
+            },
+            "attraction": {
+                "python_count": 3,
+                "laravel_count": 6,
+                "count_equal": false,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Lăng Tự Đức",
+                    "Bến thuyền Tòa Khâm",
+                    "Tử Cấm Thành"
+                ],
+                "laravel_titles": [
+                    "Biểu tình Phật giáo tại Huế 1993",
+                    "Cầu Trường Tiền",
+                    "Huế (thành phố thuộc tỉnh)",
+                    "Khách sạn Saigon Morin",
+                    "Phú Xuân (quận)"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 2312000,
+                "laravel": 6786828,
+                "delta": 4474828
+            }
+        },
+        {
+            "destination": "Hoi An",
+            "matched": true,
+            "issues": [
+                "transport_count_mismatch",
+                "transport_status_mismatch",
+                "transport_title_no_overlap",
+                "attraction_title_no_overlap"
+            ],
+            "transport": {
+                "python_count": 6,
+                "laravel_count": 2,
+                "count_equal": false,
+                "python_status": "fallback",
+                "laravel_status": "ok",
+                "status_equal": false,
+                "python_titles": [
+                    "[Đề xuất chính] SE9 Ha Noi 12:50 -> Da Nang 06:14 (via nearest hub: Da Nang)",
+                    "[Tiết kiệm] SE3 Ha Noi 19:20 -> Da Nang 10:36 (via nearest hub: Da Nang)",
+                    "[Tiết kiệm] SE1 Ha Noi 20:50 -> Da Nang 12:12 (via nearest hub: Da Nang)",
+                    "[Tiết kiệm] SE7 Ha Noi 06:00 -> Da Nang 22:43 (via nearest hub: Da Nang)",
+                    "[Tiết kiệm] SE5 Ha Noi 08:55 -> Da Nang 01:31 (via nearest hub: Da Nang)"
+                ],
+                "laravel_titles": [
+                    "[Đề xuất chính] Xe khách / limousine Ha Noi -> Hoi An",
+                    "Ô tô Ha Noi -> Hoi An"
+                ],
+                "title_overlap": 0
+            },
+            "hotel": {
+                "python_count": 4,
+                "laravel_count": 4,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Golden Holiday",
+                    "Sunflower Hotel",
+                    "Minh Quang",
+                    "Hotel My Chau"
+                ],
+                "laravel_titles": [
+                    "Golden Holiday",
+                    "Hotel My Chau",
+                    "Minh Quang",
+                    "Sunflower Hotel"
+                ],
+                "title_overlap": 4
+            },
+            "attraction": {
+                "python_count": 6,
+                "laravel_count": 6,
+                "count_equal": true,
+                "python_status": "ok",
+                "laravel_status": "ok",
+                "status_equal": true,
+                "python_titles": [
+                    "Hỏa Sơn",
+                    "Kim Sơn",
+                    "Thuỷ Sơn",
+                    "Động Âm Phủ",
+                    "Van Thong Cave"
+                ],
+                "laravel_titles": [
+                    "Bảo tàng Gốm sứ Mậu dịch",
+                    "Bảo tàng Hội An",
+                    "Công viên Hội An (Quảng Nam)",
+                    "Hội An (phường)",
+                    "Hội An Đông"
+                ],
+                "title_overlap": 0
+            },
+            "estimated_cost": {
+                "python": 2403000,
+                "laravel": 8130240,
+                "delta": 5727240
+            }
+        }
+    ]
+}
