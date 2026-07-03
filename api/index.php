@@ -135,7 +135,14 @@ $_ENV['LARAVEL_STORAGE_PATH'] = $runtimeStorage;
 $_SERVER['LARAVEL_STORAGE_PATH'] = $runtimeStorage;
 
 try {
-    require __DIR__.'/../public/index.php';
+    require __DIR__.'/../vendor/autoload.php';
+
+    /** @var Illuminate\Foundation\Application $app */
+    $app = require __DIR__.'/../bootstrap/app.php';
+    $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+    $app->register(Illuminate\Translation\TranslationServiceProvider::class);
+    $app->register(Illuminate\View\ViewServiceProvider::class);
+    $app->handleRequest(Illuminate\Http\Request::capture());
 } catch (Throwable $exception) {
     error_log($exception);
     http_response_code(500);
