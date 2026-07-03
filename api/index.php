@@ -113,6 +113,8 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__binding_probe') {
     try {
         require __DIR__.'/../vendor/autoload.php';
         $app = require __DIR__.'/../bootstrap/app.php';
+        $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+        $kernel->bootstrap();
         $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
         $app->register(Illuminate\Translation\TranslationServiceProvider::class);
         $app->register(Illuminate\View\ViewServiceProvider::class);
@@ -167,10 +169,14 @@ try {
 
     /** @var Illuminate\Foundation\Application $app */
     $app = require __DIR__.'/../bootstrap/app.php';
+    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+    $kernel->bootstrap();
     $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
     $app->register(Illuminate\Translation\TranslationServiceProvider::class);
     $app->register(Illuminate\View\ViewServiceProvider::class);
-    $app->handleRequest(Illuminate\Http\Request::capture());
+    $request = Illuminate\Http\Request::capture();
+    $response = $kernel->handle($request)->send();
+    $kernel->terminate($request, $response);
 } catch (Throwable $exception) {
     error_log($exception);
     http_response_code(500);
