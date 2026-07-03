@@ -107,6 +107,34 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__controller_probe') {
     return;
 }
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__binding_probe') {
+    http_response_code(200);
+    header('Content-Type: application/json');
+    try {
+        require __DIR__.'/../vendor/autoload.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
+        $app->register(Illuminate\Translation\TranslationServiceProvider::class);
+        $app->register(Illuminate\View\ViewServiceProvider::class);
+        echo json_encode([
+            'ok' => true,
+            'bound_view' => $app->bound('view'),
+            'bound_response' => $app->bound(Illuminate\Contracts\Routing\ResponseFactory::class),
+            'view_class' => $app->bound('view') ? $app->make('view')::class : null,
+            'response_class' => $app->bound(Illuminate\Contracts\Routing\ResponseFactory::class) ? $app->make(Illuminate\Contracts\Routing\ResponseFactory::class)::class : null,
+        ]);
+    } catch (Throwable $exception) {
+        echo json_encode([
+            'ok' => false,
+            'error' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+        ]);
+    }
+    return;
+}
+
 foreach ([
     $runtimeStorage.'/app',
     $runtimeStorage.'/app/travel_data',
