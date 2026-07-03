@@ -46,6 +46,7 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__dispatch_probe') {
     try {
         require __DIR__.'/../vendor/autoload.php';
         $app = require __DIR__.'/../bootstrap/app.php';
+        $app['config']->set('app.debug', true);
         $request = Illuminate\Http\Request::create('/health', 'GET', [], [], [], [
             'HTTP_HOST' => $_SERVER['HTTP_HOST'] ?? 'localhost',
             'HTTPS' => 'on',
