@@ -74,6 +74,33 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__dispatch_probe') {
     return;
 }
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__controller_probe') {
+    http_response_code(200);
+    header('Content-Type: application/json');
+    try {
+        require __DIR__.'/../vendor/autoload.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $controller = $app->make(App\Http\Controllers\TravelPlannerController::class);
+        $response = $controller->health();
+        echo json_encode([
+            'ok' => true,
+            'controller' => $controller::class,
+            'status' => $response->getStatusCode(),
+            'body' => $response->getData(true),
+        ]);
+    } catch (Throwable $exception) {
+        echo json_encode([
+            'ok' => false,
+            'error' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'trace' => array_slice(explode("\n", $exception->getTraceAsString()), 0, 8),
+        ]);
+    }
+    return;
+}
+
 foreach ([
     $runtimeStorage.'/app',
     $runtimeStorage.'/app/travel_data',
