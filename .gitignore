@@ -17,3 +17,7 @@
 /storage/framework/views/*
 !/storage/framework/views/.gitkeep
 /storage/logs/*.log
+
+.vercel
+.env*
+!.env.example
