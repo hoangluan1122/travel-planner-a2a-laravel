@@ -41,6 +41,38 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__laravel_probe') {
     return;
 }
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__dispatch_probe') {
+    header('Content-Type: application/json');
+    try {
+        require __DIR__.'/../vendor/autoload.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $request = Illuminate\Http\Request::create('/health', 'GET', [], [], [], [
+            'HTTP_HOST' => $_SERVER['HTTP_HOST'] ?? 'localhost',
+            'HTTPS' => 'on',
+        ]);
+        $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+        $response = $kernel->handle($request);
+        echo json_encode([
+            'ok' => $response->getStatusCode() < 500,
+            'status' => $response->getStatusCode(),
+            'headers' => $response->headers->all(),
+            'body' => substr((string) $response->getContent(), 0, 1000),
+        ]);
+        $kernel->terminate($request, $response);
+    } catch (Throwable $exception) {
+        http_response_code(500);
+        echo json_encode([
+            'ok' => false,
+            'error' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+            'trace' => array_slice(explode("\n", $exception->getTraceAsString()), 0, 8),
+        ]);
+    }
+    return;
+}
+
 foreach ([
     $runtimeStorage.'/app',
     $runtimeStorage.'/app/travel_data',
