@@ -15,6 +15,32 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__probe') {
     return;
 }
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__laravel_probe') {
+    header('Content-Type: application/json');
+    try {
+        require __DIR__.'/../vendor/autoload.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
+        echo json_encode([
+            'ok' => true,
+            'app' => $app::class,
+            'storage_path' => $app->storagePath(),
+            'cache_store' => env('CACHE_STORE'),
+            'session_driver' => env('SESSION_DRIVER'),
+            'log_channel' => env('LOG_CHANNEL'),
+        ]);
+    } catch (Throwable $exception) {
+        http_response_code(500);
+        echo json_encode([
+            'ok' => false,
+            'error' => $exception::class,
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+        ]);
+    }
+    return;
+}
+
 foreach ([
     $runtimeStorage.'/app',
     $runtimeStorage.'/app/travel_data',
