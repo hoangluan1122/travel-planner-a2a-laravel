@@ -2,6 +2,19 @@
 
 $runtimeStorage = '/tmp/laravel-storage';
 
+if (($_SERVER['REQUEST_URI'] ?? '') === '/__probe') {
+    header('Content-Type: application/json');
+    echo json_encode([
+        'ok' => true,
+        'php' => PHP_VERSION,
+        'cwd' => getcwd(),
+        'entry' => __FILE__,
+        'vendor' => is_file(__DIR__.'/../vendor/autoload.php'),
+        'storage_writable' => is_writable('/tmp'),
+    ]);
+    return;
+}
+
 foreach ([
     $runtimeStorage.'/app',
     $runtimeStorage.'/app/travel_data',
@@ -29,4 +42,11 @@ if (is_dir($sourceData)) {
 $_ENV['LARAVEL_STORAGE_PATH'] = $runtimeStorage;
 $_SERVER['LARAVEL_STORAGE_PATH'] = $runtimeStorage;
 
-require __DIR__.'/../public/index.php';
+try {
+    require __DIR__.'/../public/index.php';
+} catch (Throwable $exception) {
+    error_log($exception);
+    http_response_code(500);
+    header('Content-Type: text/plain; charset=utf-8');
+    echo $exception::class.': '.$exception->getMessage();
+}
