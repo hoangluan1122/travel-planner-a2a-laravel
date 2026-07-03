@@ -115,6 +115,8 @@ if (($_SERVER['REQUEST_URI'] ?? '') === '/__binding_probe') {
         $app = require __DIR__.'/../bootstrap/app.php';
         $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
         $kernel->bootstrap();
+        $request = Illuminate\Http\Request::capture();
+        $app->instance('request', $request);
         $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
         $app->register(Illuminate\Translation\TranslationServiceProvider::class);
         $app->register(Illuminate\View\ViewServiceProvider::class);
@@ -171,10 +173,11 @@ try {
     $app = require __DIR__.'/../bootstrap/app.php';
     $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
     $kernel->bootstrap();
+    $request = Illuminate\Http\Request::capture();
+    $app->instance('request', $request);
     $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
     $app->register(Illuminate\Translation\TranslationServiceProvider::class);
     $app->register(Illuminate\View\ViewServiceProvider::class);
-    $request = Illuminate\Http\Request::capture();
     $response = $kernel->handle($request)->send();
     $kernel->terminate($request, $response);
 } catch (Throwable $exception) {
